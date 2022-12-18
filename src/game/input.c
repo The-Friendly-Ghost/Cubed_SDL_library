@@ -1,21 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   cub3d_constants.h                                  :+:    :+:            */
+/*   input.c                                            :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: cpost <cpost@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/12/16 14:15:39 by cpost         #+#    #+#                 */
-/*   Updated: 2022/12/18 20:13:45 by cpost         ########   odam.nl         */
+/*   Created: 2022/12/05 08:58:25 by cpost         #+#    #+#                 */
+/*   Updated: 2022/12/18 20:27:18 by cpost         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_CONSTANTS_H
-# define CUB3D_CONSTANTS_H
+#include "cub3d_game.h"
+#include <SDL2/SDL.h>
+#include <stdbool.h>
 
-#define WINDOW_WIDTH 800
-#define WINDOW_HEIGTH 600
-#define FPS 30
-#define FRAME_TIME_LENGTH (1000 / FPS)
 
-#endif
+void	get_input(t_game *game)
+{
+	SDL_Event	event;
+
+	SDL_PollEvent(&event);
+	if (event.type == SDL_QUIT)
+		game->running = false;
+	else if (event.type == SDL_KEYDOWN)
+	{
+		if (event.key.keysym.sym == SDLK_ESCAPE)
+			game->running = false;
+	}
+}

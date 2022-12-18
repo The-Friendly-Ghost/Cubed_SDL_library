@@ -6,7 +6,7 @@
 /*   By: cpost <cpost@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/12/05 11:13:37 by cpost         #+#    #+#                 */
-/*   Updated: 2022/12/18 16:05:54 by cpost         ########   odam.nl         */
+/*   Updated: 2022/12/18 19:44:15 by cpost         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@
 /**
  * @brief Validates whether a file exists and ends with .cub
  * @param file Filename to be validated
- * @return True if file exits and is a .cub file. Else returns false.
- * @note
+ * @param map Pointer to structure with map details in it
+ * @return Nothing
  */
 void	parse_file(char *filename, t_map *map);
 
@@ -40,7 +40,6 @@ void	parse_file(char *filename, t_map *map);
  * @param line The line to parse
  * @param map Pointer to the struct that has all the map information in it
  * @return Nothing
- * @note
  */
 void	parse_map_line(char *line, t_map *map);
 
@@ -56,7 +55,6 @@ void	parse_map_line(char *line, t_map *map);
  * @param line The line to check
  * @param map Pointer to the struct that has all the map information in it
  * @return Nothing
- * @note
  */
 void	get_info_from_file(char **line, t_map *map);
 
@@ -70,7 +68,6 @@ void	get_info_from_file(char **line, t_map *map);
  * @brief Initiates the variables in the map struct
  * @param map Pointer to the struct that has all the map information in it
  * @return Nothing
- * @note
  */
 void	init_map(t_map *map);
 
@@ -79,7 +76,6 @@ void	init_map(t_map *map);
  * set.
  * @param map Pointer to the struct that has all the map information in it
  * @return True if all have been set. Else false.
- * @note
  */
 bool	all_info_is_set(t_map *map);
 
@@ -95,7 +91,6 @@ void	print_map(char **map);
  * @brief Function that checks whether the inputed map is valid.
  * @param map Pointer to the struct that has all the map information in it
  * @return Nothing
- * @note
  */
 void	validate_map(t_map *map);
 
