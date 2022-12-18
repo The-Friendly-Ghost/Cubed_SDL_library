@@ -1,13 +1,9 @@
-        SO         ./png/test1.png
-WE            ./png/test2.png
-NO      ./png/test3.png
-
-
-EA ./png/test4.png   
-        F 125  128 53
+SO ./png/test1.png
+WE ./png/test2.png
+NO /png/test3.png
+EA ./png/test4.png
+F 125 128 53
 C 1 4 5
-
-
 
 
 

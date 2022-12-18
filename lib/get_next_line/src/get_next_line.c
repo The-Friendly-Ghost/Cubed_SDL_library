@@ -6,7 +6,7 @@
 /*   By: cpost <cpost@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/04/11 12:23:20 by cpost         #+#    #+#                 */
-/*   Updated: 2022/07/11 11:48:57 by cpost         ########   odam.nl         */
+/*   Updated: 2022/12/16 16:45:53 by cpost         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,15 +132,16 @@ char	*fill_return(char *return_str, char *total_str, int r_read, int fd)
  * 
  * @param fd The file that has to be read.
  * @return (char*) The next line of the file
+ * @note _SC_OPEN_MAX on Linux. OPEN_MAX on Mac
  */
 char	*get_next_line(int fd)
 {
 	char		*return_str;
-	static char	total_str[OPEN_MAX][BUFFER_SIZE + 1];
+	static char	total_str[_SC_OPEN_MAX][BUFFER_SIZE + 1];
 	int			size;
 	int			r_read;
 
-	if (BUFFER_SIZE <= 0 || fd > OPEN_MAX || fd < 0)
+	if (BUFFER_SIZE <= 0 || fd > _SC_OPEN_MAX || fd < 0)
 		return (NULL);
 	r_read = 1;
 	if (total_str[fd][0] == '\0')

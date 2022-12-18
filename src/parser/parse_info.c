@@ -6,7 +6,7 @@
 /*   By: cpost <cpost@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/12/06 16:09:45 by cpost         #+#    #+#                 */
-/*   Updated: 2022/12/16 13:02:28 by cpost         ########   odam.nl         */
+/*   Updated: 2022/12/18 16:26:13 by cpost         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,14 +38,14 @@ void	get_info_from_file(char **line, t_map *map)
 {
 	if (line[0] == NULL)
 		return (free(line));
-	// if (!ft_strcmp(line[0], "SO") && line[1] && !line[2])
-	// 	map->south_wall = alloc_check(mlx_load_png(line[1]));
-	// else if (!ft_strcmp(line[0], "NO") && line[1] && !line[2])
-	// 	map->north_wall = alloc_check(mlx_load_png(line[1]));
-	// else if (!ft_strcmp(line[0], "WE") && line[1] && !line[2])
-	// 	map->west_wall = alloc_check(mlx_load_png(line[1]));
-	// else if (!ft_strcmp(line[0], "EA") && line[1] && !line[2])
-	// 	map->east_wall = alloc_check(mlx_load_png(line[1]));
+	if (!ft_strcmp(line[0], "SO") && line[1] && !line[2])
+		map->south_wall = ft_strdup("test"); //alloc_check(mlx_load_png(line[1]));
+	else if (!ft_strcmp(line[0], "NO") && line[1] && !line[2])
+		map->north_wall = ft_strdup("test"); //alloc_check(mlx_load_png(line[1]));
+	else if (!ft_strcmp(line[0], "WE") && line[1] && !line[2])
+		map->west_wall = ft_strdup("test"); //alloc_check(mlx_load_png(line[1]));
+	else if (!ft_strcmp(line[0], "EA") && line[1] && !line[2])
+		map->east_wall = ft_strdup("test"); //alloc_check(mlx_load_png(line[1]));
 	else if (!ft_strcmp(line[0], "F") && line[1])
 		map->floor = get_rgb(line);
 	else if (!ft_strcmp(line[0], "C") && line[1])
