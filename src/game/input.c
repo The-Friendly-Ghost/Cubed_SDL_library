@@ -6,7 +6,7 @@
 /*   By: cpost <cpost@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/12/05 08:58:25 by cpost         #+#    #+#                 */
-/*   Updated: 2022/12/18 20:27:18 by cpost         ########   odam.nl         */
+/*   Updated: 2022/12/19 18:12:19 by cpost         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,35 @@
 #include <SDL2/SDL.h>
 #include <stdbool.h>
 
-
-void	get_input(t_game *game)
+void	get_input(t_cub3d *cub3d)
 {
 	SDL_Event	event;
 
 	SDL_PollEvent(&event);
 	if (event.type == SDL_QUIT)
-		game->running = false;
+		cub3d->game.running = false;
 	else if (event.type == SDL_KEYDOWN)
 	{
 		if (event.key.keysym.sym == SDLK_ESCAPE)
-			game->running = false;
+			cub3d->game.running = false;
+		else if (event.key.keysym.sym == SDLK_UP)
+			cub3d->player.walk_direction = +1;
+		else if (event.key.keysym.sym == SDLK_DOWN)
+			cub3d->player.walk_direction = -1;
+		else if (event.key.keysym.sym == SDLK_RIGHT)
+			cub3d->player.turn_direction = -1;
+		else if (event.key.keysym.sym == SDLK_LEFT)
+			cub3d->player.turn_direction= +1;
+	}
+	else if (event.type == SDL_KEYUP)
+	{
+		if (event.key.keysym.sym == SDLK_UP)
+			cub3d->player.walk_direction = 0;
+		else if (event.key.keysym.sym == SDLK_DOWN)
+			cub3d->player.walk_direction = 0;
+		else if (event.key.keysym.sym == SDLK_RIGHT)
+			cub3d->player.turn_direction = 0;
+		else if (event.key.keysym.sym == SDLK_LEFT)
+			cub3d->player.turn_direction= 0;
 	}
 }

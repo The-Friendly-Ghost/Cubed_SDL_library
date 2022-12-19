@@ -1,0 +1,20 @@
+SO ./png/test1.png
+WE ./png/test2.png
+NO /png/test3.png
+EA ./png/test4.png
+F 69 147 0
+C 69 147 255
+
+
+
+111111
+100001
+100111
+1S0101
+100001
+111111
+
+
+
+
+

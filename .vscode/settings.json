@@ -3,6 +3,16 @@
 		"libft.h": "c",
 		"stdlib.h": "c",
 		"stdbool.h": "c",
-		"cub3d_utils.h": "c"
+		"cub3d_utils.h": "c",
+		"bit": "c",
+		"*.tcc": "c",
+		"functional": "c",
+		"random": "c",
+		"limits": "c",
+		"stddef.h": "c",
+		"cub3d_game.h": "c",
+		"cub3d_constants.h": "c",
+		"cub3d_structs.h": "c",
+		"sdl.h": "c"
 	}
 }

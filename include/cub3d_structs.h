@@ -6,7 +6,7 @@
 /*   By: cpost <cpost@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/12/05 08:48:32 by cpost         #+#    #+#                 */
-/*   Updated: 2022/12/18 20:42:23 by cpost         ########   odam.nl         */
+/*   Updated: 2022/12/19 15:08:21 by cpost         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,11 @@ typedef struct s_map {
 	int		fd_map;
 	int		n_row;
 	int		n_column;
+	char	starting_orientation;
+	float	start_pos_x;
+	float	start_pos_y;
+	float	minimap_tile_size;
+	float	scale_factor;
 	char	*north_wall;
 	char	*east_wall;
 	char	*south_wall;
@@ -45,9 +50,22 @@ typedef struct s_map {
 	t_rgb	*ceiling;
 }	t_map;
 
+typedef struct s_player {
+	float		x;
+	float		y;
+	float		height;
+	float		width;
+	int			turn_direction;
+	int			walk_direction;
+	float		rotation_angle;
+	float		walk_speed;
+	float		turn_speed;
+}	t_player;
+
 typedef struct s_cub3d {
-	t_map	map_data;
-	t_game	game;
+	t_map		map_data;
+	t_game		game;
+	t_player	player;
 }	t_cub3d;
 
 #endif

@@ -6,7 +6,7 @@
 #    By: cpost <cpost@student.codam.nl>               +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/12/05 09:38:13 by cpost         #+#    #+#                  #
-#    Updated: 2022/12/18 16:17:02 by cpost         ########   odam.nl          #
+#    Updated: 2022/12/19 17:46:25 by cpost         ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ LIBSDL = /usr/lib/x86_64-linux-gnu/libSDL2.a
 
 SRC_PATH = src
 OBJ_PATH = obj
-INC_PATH = include lib/Libft/include lib/get_next_line/include #/usr/include/SDL2
+INC_PATH = include lib/Libft/include lib/get_next_line/include
 
 LIBFT_PATH = /home/casper/Desktop/Raycast_JS_prototype/lib/Libft/
 GNL_PATH = /home/casper/Desktop/Raycast_JS_prototype/lib/get_next_line/
@@ -37,7 +37,7 @@ RESET = \033[0m
 #=====================================#
 
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g -fsanitize="address"
 
 #=====================================#
 #============ Input files ============#
@@ -60,7 +60,7 @@ all: $(NAME)
 $(NAME): $(OBJ)
 	@make -C $(LIBFT_PATH)
 	@make -C $(GNL_PATH)
-	@$(CC) $(CFLAGS) $(OBJ) $(LIB) $(INC) -o $(NAME) && printf "$(YELLOW)$(BOLD)\rBuild $(NAME)\r\e[35C[OK]\n$(RESET)"
+	@$(CC) $(CFLAGS) $(OBJ) $(LIB) -lm $(INC) -o $(NAME) && printf "$(YELLOW)$(BOLD)\rBuild $(NAME)\r\e[35C[OK]\n$(RESET)"
 
 
 $(OBJ_PATH)/%.o: %.c include/cub3d*

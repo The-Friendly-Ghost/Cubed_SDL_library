@@ -6,7 +6,7 @@
 /*   By: cpost <cpost@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/12/07 12:33:22 by cpost         #+#    #+#                 */
-/*   Updated: 2022/12/08 12:54:34 by cpost         ########   odam.nl         */
+/*   Updated: 2022/12/19 15:15:09 by cpost         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include "libft.h"
 #include <stdlib.h>
 #include <stdbool.h>
+#include <stdio.h>
 
 static void	check_if_map_is_closed(t_map *map)
 {
@@ -68,6 +69,7 @@ static void	equalize_row_length(t_map *map)
 		map->map[i] = ft_strfill(map->map[i], len, ' ');
 		i++;
 	}
+	map->n_column = len;
 }
 
 static void	check_forbidden_characters_in_map(t_map *map)
@@ -89,6 +91,9 @@ static void	check_forbidden_characters_in_map(t_map *map)
 				if (player_init == true)
 					exit_error("Only 1 player allowed in map", 1);
 				player_init = true;
+				map->starting_orientation = map->map[y][x];
+				map->start_pos_x = x;
+				map->start_pos_y = y;
 			}
 			else if (map->map[y][x] != '1' && map->map[y][x] != '0'
 				&& map->map[y][x] != ' ')

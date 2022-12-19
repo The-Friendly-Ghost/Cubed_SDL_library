@@ -6,7 +6,7 @@
 /*   By: cpost <cpost@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/12/05 10:31:54 by cpost         #+#    #+#                 */
-/*   Updated: 2022/12/18 16:24:35 by cpost         ########   odam.nl         */
+/*   Updated: 2022/12/19 11:30:40 by cpost         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "cub3d_structs.h"
 #include "cub3d_utils.h"
 #include "get_next_line.h"
+#include "cub3d_constants.h"
 #include "libft.h"
 #include <unistd.h>
 #include <fcntl.h>
