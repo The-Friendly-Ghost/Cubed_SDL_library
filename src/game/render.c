@@ -6,7 +6,7 @@
 /*   By: cpost <cpost@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/12/05 08:58:25 by cpost         #+#    #+#                 */
-/*   Updated: 2022/12/19 18:04:35 by cpost         ########   odam.nl         */
+/*   Updated: 2022/12/20 16:37:15 by cpost         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,10 +59,11 @@ void	update(t_cub3d *cub3d_data)
 	float		delta_time;
 
 	time_to_wait = FRAME_TIME_LENGTH - (SDL_GetTicks()
-		- cub3d_data->game.ticks_last_frame);
+			- cub3d_data->game.ticks_last_frame);
 	if (time_to_wait > 0 && time_to_wait <= FRAME_TIME_LENGTH)
 		SDL_Delay(time_to_wait);
-	delta_time = (SDL_GetTicks64() - cub3d_data->game.ticks_last_frame) / 1000.0f;
+	delta_time = (SDL_GetTicks64()
+			- cub3d_data->game.ticks_last_frame) / 1000.0f;
 	move_player(delta_time, cub3d_data);
 	cub3d_data->game.ticks_last_frame = SDL_GetTicks64();
 }
@@ -74,6 +75,7 @@ void	render_frame(SDL_Renderer *render, t_cub3d *cub3d_data)
 	draw_background(render, cub3d_data);
 	draw_minimap(render, cub3d_data);
 	draw_player(render, cub3d_data);
+	// draw_rays(render, cub3d_data);
 	//TODO invoegen
 	SDL_RenderPresent(render);
 }

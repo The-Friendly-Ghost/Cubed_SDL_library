@@ -6,7 +6,7 @@
 /*   By: cpost <cpost@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/12/05 08:58:25 by cpost         #+#    #+#                 */
-/*   Updated: 2022/12/20 09:39:50 by cpost         ########   odam.nl         */
+/*   Updated: 2022/12/20 16:47:08 by cpost         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,19 +17,44 @@
 #include <math.h>
 #include <stdio.h>
 
+// float	normalize_angle(float ray_angle)
+// {
+// 	while (ray_angle < 0)
+// 		ray_angle += TWO_PI;
+// 	while (ray_angle > TWO_PI)
+// 		ray_angle -= TWO_PI;
+// 	return (ray_angle);
+// }
+
+// void	cast_ray(SDL_Renderer *render, t_cub3d *cub3d_data, float ray_angle,
+// 		int strip_id)
+// {
+// 	float	x_intercept;
+// 	float	y_intercept;
+// 	float	x_step;
+// 	float	y_step;
+
+// 	ray_angle = normalize_angle(ray_angle);
+	
+// }
+
 void	draw_player(SDL_Renderer *render, t_cub3d *cub3d_data)
 {
-	SDL_Rect	player;
+	// float	ray_angle;
+	// int		strip_id;
+
+	// ray_angle = cub3d_data->player.rotation_angle - (FOV_ANGLE / 2);
+	// while (strip_id < NUM_RAYS)
+	// {
+	// 	cast_ray(render, cub3d_data, ray_angle, strip_id);
+	// 	ray_angle += FOV_ANGLE / NUM_RAYS;
+	// 	strip_id++;
+	// }
 
 	SDL_SetRenderDrawColor(render, 255, 0, 0, 255);
-	player.x = cub3d_data->player.x;
-	player.y = cub3d_data->player.y;
-	player.h = cub3d_data->player.height;
-	player.w = cub3d_data->player.width;
-	// SDL_RenderFillRect(render, &player);
-	SDL_RenderDrawLine(render, player.x, player.y,
-		player.x + cos(cub3d_data->player.rotation_angle) * 40,
-		player.y + sin(cub3d_data->player.rotation_angle) * 40);
+	SDL_RenderDrawLine(render, cub3d_data->player.x, cub3d_data->player.y,
+		cub3d_data->player.x + cos(cub3d_data->player.rotation_angle) * 40,
+		cub3d_data->player.y + sin(cub3d_data->player.rotation_angle) * 40);
 }
 
 void	draw_tile(SDL_Renderer *render, t_cub3d *cub3d_data, int x, int y)

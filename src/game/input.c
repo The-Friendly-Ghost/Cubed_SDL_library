@@ -6,7 +6,7 @@
 /*   By: cpost <cpost@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/12/05 08:58:25 by cpost         #+#    #+#                 */
-/*   Updated: 2022/12/20 09:46:45 by cpost         ########   odam.nl         */
+/*   Updated: 2022/12/20 12:20:22 by cpost         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	get_input(t_cub3d *cub3d)
 		else if (event.key.keysym.sym == SDLK_RIGHT)
 			cub3d->player.turn_direction = 0;
 		else if (event.key.keysym.sym == SDLK_LEFT)
-			cub3d->player.turn_direction= 0;
+			cub3d->player.turn_direction = 0;
 	}
 	else if (event.type == SDL_KEYDOWN && !event.key.repeat)
 	{
@@ -43,6 +43,6 @@ void	get_input(t_cub3d *cub3d)
 		else if (event.key.keysym.sym == SDLK_RIGHT)
 			cub3d->player.turn_direction = -1;
 		else if (event.key.keysym.sym == SDLK_LEFT)
-			cub3d->player.turn_direction= +1;
+			cub3d->player.turn_direction = +1;
 	}
 }

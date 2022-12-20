@@ -6,12 +6,13 @@
 /*   By: cpost <cpost@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/12/05 08:48:32 by cpost         #+#    #+#                 */
-/*   Updated: 2022/12/19 15:08:21 by cpost         ########   odam.nl         */
+/*   Updated: 2022/12/20 13:55:30 by cpost         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_STRUCTS_H
 # define CUB3D_STRUCTS_H
+# include "cub3d_constants.h"
 # include <stdbool.h>
 # include <stdint.h>
 
@@ -61,6 +62,19 @@ typedef struct s_player {
 	float		walk_speed;
 	float		turn_speed;
 }	t_player;
+
+typedef struct s_rays {
+	float		ray_angle;
+	float		wall_hit_x;
+	float		wall_hit_y;
+	float		distance;
+	int			is_hit_vertical;
+	int			is_ray_facing_down;
+	int			is_ray_facing_up;
+	int			is_ray_facing_left;
+	int			is_ray_facing_right;
+	int			wall_hit_content;
+}	t_rays[NUM_RAYS];
 
 typedef struct s_cub3d {
 	t_map		map_data;
