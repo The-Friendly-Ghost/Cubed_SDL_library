@@ -6,7 +6,7 @@
 #    By: cpost <cpost@student.codam.nl>               +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/12/05 09:38:13 by cpost         #+#    #+#                  #
-#    Updated: 2022/12/19 17:46:25 by cpost         ########   odam.nl          #
+#    Updated: 2022/12/20 09:36:35 by cpost         ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,7 @@ RESET = \033[0m
 #=====================================#
 
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -g -fsanitize="address"
+CFLAGS = -Wall -Wextra -Werror #-g -fsanitize="address"
 
 #=====================================#
 #============ Input files ============#

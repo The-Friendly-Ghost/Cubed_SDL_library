@@ -6,7 +6,7 @@
 /*   By: cpost <cpost@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/12/05 08:58:25 by cpost         #+#    #+#                 */
-/*   Updated: 2022/12/19 17:05:56 by cpost         ########   odam.nl         */
+/*   Updated: 2022/12/20 09:39:50 by cpost         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	draw_player(SDL_Renderer *render, t_cub3d *cub3d_data)
 	player.y = cub3d_data->player.y;
 	player.h = cub3d_data->player.height;
 	player.w = cub3d_data->player.width;
-	SDL_RenderFillRect(render, &player);
+	// SDL_RenderFillRect(render, &player);
 	SDL_RenderDrawLine(render, player.x, player.y,
 		player.x + cos(cub3d_data->player.rotation_angle) * 40,
 		player.y + sin(cub3d_data->player.rotation_angle) * 40);
