@@ -6,7 +6,7 @@
 /*   By: cpost <cpost@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/12/05 08:58:25 by cpost         #+#    #+#                 */
-/*   Updated: 2022/12/19 18:01:49 by cpost         ########   odam.nl         */
+/*   Updated: 2022/12/21 15:53:11 by cpost         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,9 @@ int	main(int argc, char **argv)
 {
 	t_cub3d			cub3d_data;
 
+	printf("%f %f %f\n", sqrt(-8), sqrt(-8.4), sqrt(-1));
+	printf("%f %f %f\n", ft_sqrt(-8), ft_sqrt(-8.4), ft_sqrt(-1));
+	printf("%f %f %f\n", ft_sqrtf(-8), ft_sqrtf(-8.4), ft_sqrtf(-1));
 	if (argc != 2)
 		exit_error("Invalid amount of arguments", 1);
 	validate_constants();

@@ -6,7 +6,7 @@
 /*   By: cpost <cpost@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/12/05 08:48:32 by cpost         #+#    #+#                 */
-/*   Updated: 2022/12/20 13:55:30 by cpost         ########   odam.nl         */
+/*   Updated: 2022/12/21 16:12:26 by cpost         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,10 +76,23 @@ typedef struct s_rays {
 	int			wall_hit_content;
 }	t_rays[NUM_RAYS];
 
+typedef struct s_raycheck {
+	float	distance;
+	bool	found_wall_hit;
+	float	wall_hit_x;
+	float	wall_hit_y;
+	float	wall_hit_content;
+	float	x_step;
+	float	y_step;
+	float	x_intercept;
+	float	y_intercept;
+}	t_raycheck;
+
 typedef struct s_cub3d {
 	t_map		map_data;
 	t_game		game;
 	t_player	player;
+	t_rays		rays;
 }	t_cub3d;
 
 #endif

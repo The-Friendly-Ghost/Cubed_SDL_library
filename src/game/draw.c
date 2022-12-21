@@ -6,7 +6,7 @@
 /*   By: cpost <cpost@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/12/05 08:58:25 by cpost         #+#    #+#                 */
-/*   Updated: 2022/12/21 12:42:03 by cpost         ########   odam.nl         */
+/*   Updated: 2022/12/21 15:46:27 by cpost         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,28 +15,6 @@
 #include "cub3d_game.h"
 #include <SDL2/SDL.h>
 #include <math.h>
-#include <stdio.h>
-#include "libft.h"
-
-// float	normalize_angle(float ray_angle)
-// {
-// 	ray_angle = ft_fmod(ray_angle, TWO_PI);
-// 	if (ray_angle < 0)
-// 		ray_angle = TWO_PI + ray_angle;
-// 	return (ray_angle);
-// }
-
-// void	cast_ray(SDL_Renderer *render, t_cub3d *cub3d_data, float ray_angle,
-// 		int strip_id)
-// {
-// 	float	x_intercept;
-// 	float	y_intercept;
-// 	float	x_step;
-// 	float	y_step;
-
-// 	ray_angle = normalize_angle(ray_angle);
-	
-// }
 
 void	draw_player(SDL_Renderer *render, t_cub3d *cub3d_data)
 {

@@ -6,7 +6,7 @@
 /*   By: cpost <cpost@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/10/28 12:43:58 by cpost         #+#    #+#                 */
-/*   Updated: 2022/12/21 12:31:15 by cpost         ########   odam.nl         */
+/*   Updated: 2022/12/21 16:22:10 by cpost         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,4 +75,8 @@ int		ft_str_is_whitespace(char *str);
 int		ft_is_whitespace(char c);
 void	ft_free_double_arr(char **arr);
 float	ft_fmod(float a, float b);
+double	ft_sqrt(double num);
+float	ft_sqrtf(float num);
+double	ft_floor(double num);
+float	ft_floorf(float num);
 #endif
