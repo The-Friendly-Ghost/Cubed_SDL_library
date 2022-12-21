@@ -6,7 +6,7 @@
 /*   By: cpost <cpost@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/12/05 08:58:25 by cpost         #+#    #+#                 */
-/*   Updated: 2022/12/20 16:47:08 by cpost         ########   odam.nl         */
+/*   Updated: 2022/12/21 12:42:03 by cpost         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,13 @@
 #include <SDL2/SDL.h>
 #include <math.h>
 #include <stdio.h>
+#include "libft.h"
 
 // float	normalize_angle(float ray_angle)
 // {
-// 	while (ray_angle < 0)
-// 		ray_angle += TWO_PI;
-// 	while (ray_angle > TWO_PI)
-// 		ray_angle -= TWO_PI;
+// 	ray_angle = ft_fmod(ray_angle, TWO_PI);
+// 	if (ray_angle < 0)
+// 		ray_angle = TWO_PI + ray_angle;
 // 	return (ray_angle);
 // }
 
