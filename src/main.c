@@ -6,7 +6,7 @@
 /*   By: cpost <cpost@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/12/05 08:58:25 by cpost         #+#    #+#                 */
-/*   Updated: 2022/12/21 15:53:11 by cpost         ########   odam.nl         */
+/*   Updated: 2022/12/27 15:21:13 by cpost         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,17 +40,12 @@ int	main(int argc, char **argv)
 {
 	t_cub3d			cub3d_data;
 
-	printf("%f %f %f\n", sqrt(-8), sqrt(-8.4), sqrt(-1));
-	printf("%f %f %f\n", ft_sqrt(-8), ft_sqrt(-8.4), ft_sqrt(-1));
-	printf("%f %f %f\n", ft_sqrtf(-8), ft_sqrtf(-8.4), ft_sqrtf(-1));
 	if (argc != 2)
 		exit_error("Invalid amount of arguments", 1);
 	validate_constants();
 	init_map(&cub3d_data.map_data);
 	parse_file(argv[1], &cub3d_data.map_data);
 	validate_map(&cub3d_data.map_data);
-// print_map(cub3d_data.map_data.map);
-// printf("11:9 = %c\n", cub3d_data.map_data.map[9][11]);
 	start_game(&cub3d_data);
 	close(cub3d_data.map_data.fd_map);
 	return (1);

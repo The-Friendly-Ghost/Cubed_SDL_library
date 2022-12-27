@@ -6,7 +6,7 @@
 /*   By: cpost <cpost@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/12/05 08:58:25 by cpost         #+#    #+#                 */
-/*   Updated: 2022/12/21 16:43:25 by cpost         ########   odam.nl         */
+/*   Updated: 2022/12/27 16:11:10 by cpost         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include "cub3d_game.h"
 #include <SDL2/SDL.h>
 #include <math.h>
+#include <limits.h>
 
 void	check_where_ray_is_facing(t_cub3d *cub3d_data, float ray_angle,
 		int strip_id)
@@ -50,32 +51,43 @@ float	normalize_angle(float ray_angle)
 	return (ray_angle);
 }
 
-t_raycheck	check_horizontal_interception(t_raycheck *horz, t_cub3d *cub3d_data,
-			int strip_id, float ray_angle)
+float	calc_distance_between_points(float x1, float y1, float x2, float y2)
 {
-	// Find the y-coordinate of the closest horiontal grid intersection
-	horz->y_intercept = ft_floor(cub3d_data->player.y
-			/ cub3d_data->map_data.minimap_tile_size)
-		* cub3d_data->map_data.minimap_tile_size;
-	if (cub3d_data->rays[strip_id].is_ray_facing_down)
-		horz->wall_hit_y += cub3d_data->map_data.minimap_tile_size;
-	// Find the x-coordinate of the closest horiontal grid intersection
-	horz->x_intercept = cub3d_data->player.x + (horz->y_intercept
-			- cub3d_data->player.y) / tan(ray_angle);
-	// Calculate the increment ystep
-	horz->y_step = cub3d_data->map_data.minimap_tile_size;
-	if (cub3d_data->rays[strip_id].is_ray_facing_up)
-		horz->y_step *= -1;
-	// Calculate the increment xstep
-	horz->x_step = cub3d_data->map_data.minimap_tile_size / tan(ray_angle);
-	if (cub3d_data->rays[strip_id].is_ray_facing_left && horz->x_step > 0)
-		horz->x_step *= -1;
-	if (cub3d_data->rays[strip_id].is_ray_facing_right && horz->x_step < 0)
-		horz->x_step *= -1;
-	// PIKUMA 10 MIN
+	return (ft_sqrtf((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1)));
 }
 
-void	cast_ray(SDL_Renderer *render, t_cub3d *cub3d_data, float ray_angle,
+void	set_ray_distance(t_raycheck *vert, t_raycheck *horz,
+		t_cub3d *cub3d_data, int strip_id)
+{
+	if (horz->found_wall_hit)
+		horz->distance = calc_distance_between_points(cub3d_data->player.x,
+				cub3d_data->player.x, horz->wall_hit_x, horz->wall_hit_y);
+	else
+		horz->distance = INT_MAX;
+	if (vert->found_wall_hit)
+		vert->distance = calc_distance_between_points(cub3d_data->player.x,
+				cub3d_data->player.x, vert->wall_hit_x, vert->wall_hit_y);
+	else
+		vert->distance = INT_MAX;
+	if (vert->distance < horz->distance)
+	{
+		cub3d_data->rays[strip_id].distance = vert->distance;
+		cub3d_data->rays[strip_id].wall_hit_x = vert->wall_hit_x;
+		cub3d_data->rays[strip_id].wall_hit_y = vert->wall_hit_y;
+		cub3d_data->rays[strip_id].wall_hit_content = vert->wall_hit_content;
+		cub3d_data->rays[strip_id].is_hit_vertical = true;
+	}
+	else
+	{
+		cub3d_data->rays[strip_id].distance = horz->distance;
+		cub3d_data->rays[strip_id].wall_hit_x = horz->wall_hit_x;
+		cub3d_data->rays[strip_id].wall_hit_y = horz->wall_hit_y;
+		cub3d_data->rays[strip_id].wall_hit_content = horz->wall_hit_content;
+		cub3d_data->rays[strip_id].is_hit_vertical = false;
+	}
+}
+
+void	cast_ray(t_cub3d *cub3d_data, float ray_angle,
 		int strip_id)
 {
 	t_raycheck	vert;
@@ -83,5 +95,8 @@ void	cast_ray(SDL_Renderer *render, t_cub3d *cub3d_data, float ray_angle,
 
 	ray_angle = normalize_angle(ray_angle);
 	check_where_ray_is_facing(cub3d_data, ray_angle, strip_id);
-	check_horizontal_interception(&horz, cub3d_data, strip_id, ray_angle);
+	get_horizontal_increment(&horz, cub3d_data, strip_id, ray_angle);
+	get_vertical_increment(&vert, cub3d_data, strip_id, ray_angle);
+	set_ray_distance(&vert, &horz, cub3d_data, strip_id);
+	cub3d_data->rays[strip_id].ray_angle = ray_angle;
 }

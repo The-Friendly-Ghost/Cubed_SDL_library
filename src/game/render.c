@@ -6,7 +6,7 @@
 /*   By: cpost <cpost@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/12/05 08:58:25 by cpost         #+#    #+#                 */
-/*   Updated: 2022/12/20 16:37:15 by cpost         ########   odam.nl         */
+/*   Updated: 2022/12/27 16:10:11 by cpost         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,21 @@ void	move_player(float delta_time, t_cub3d *cub3d)
 	}
 }
 
+void	cast_all_rays(t_cub3d *cub3d_data)
+{
+	float	ray_angle;
+	int		strip_id;
+
+	ray_angle = cub3d_data->player.rotation_angle - (FOV_ANGLE / 2);
+	strip_id = 0;
+	while (strip_id < NUM_RAYS)
+	{
+		cast_ray(cub3d_data, ray_angle, strip_id);
+		ray_angle += (FOV_ANGLE / NUM_RAYS);
+		strip_id++;
+	}
+}
+
 void	update(t_cub3d *cub3d_data)
 {
 	uint64_t	time_to_wait;
@@ -66,6 +81,7 @@ void	update(t_cub3d *cub3d_data)
 			- cub3d_data->game.ticks_last_frame) / 1000.0f;
 	move_player(delta_time, cub3d_data);
 	cub3d_data->game.ticks_last_frame = SDL_GetTicks64();
+	cast_all_rays(cub3d_data);
 }
 
 void	render_frame(SDL_Renderer *render, t_cub3d *cub3d_data)

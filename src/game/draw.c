@@ -6,7 +6,7 @@
 /*   By: cpost <cpost@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/12/05 08:58:25 by cpost         #+#    #+#                 */
-/*   Updated: 2022/12/21 15:46:27 by cpost         ########   odam.nl         */
+/*   Updated: 2022/12/27 16:13:24 by cpost         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,21 +18,21 @@
 
 void	draw_player(SDL_Renderer *render, t_cub3d *cub3d_data)
 {
-	// float	ray_angle;
-	// int		strip_id;
+	int	i;
 
-	// ray_angle = cub3d_data->player.rotation_angle - (FOV_ANGLE / 2);
-	// while (strip_id < NUM_RAYS)
-	// {
-	// 	cast_ray(render, cub3d_data, ray_angle, strip_id);
-	// 	ray_angle += FOV_ANGLE / NUM_RAYS;
-	// 	strip_id++;
-	// }
-
+	i = 0;
 	SDL_SetRenderDrawColor(render, 255, 0, 0, 255);
-	SDL_RenderDrawLine(render, cub3d_data->player.x, cub3d_data->player.y,
-		cub3d_data->player.x + cos(cub3d_data->player.rotation_angle) * 40,
-		cub3d_data->player.y + sin(cub3d_data->player.rotation_angle) * 40);
+	(void)cub3d_data;
+	while (i < 10)
+	{
+		SDL_RenderDrawLine(render,
+			cub3d_data->player.x,
+			cub3d_data->player.y,
+			cub3d_data->rays[i].wall_hit_x,
+			cub3d_data->rays[i].wall_hit_y);
+// printf("i = %d X = %f, Y = %f\n", i, cub3d_data->rays[i].wall_hit_x, cub3d_data->rays[i].wall_hit_y);
+		i++;
+	}
 }
 
 void	draw_tile(SDL_Renderer *render, t_cub3d *cub3d_data, int x, int y)

@@ -6,7 +6,7 @@
 /*   By: cpost <cpost@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/12/05 11:13:37 by cpost         #+#    #+#                 */
-/*   Updated: 2022/12/20 12:16:05 by cpost         ########   odam.nl         */
+/*   Updated: 2022/12/27 16:12:12 by cpost         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
  * @param cub3d_data Pointer to the struct with the game data in it.
  * @return Nothing
  */
-void	start_game(t_cub3d *cub3d_data);
+void		start_game(t_cub3d *cub3d_data);
 
 /**
 #=====================================#
@@ -42,14 +42,24 @@ void	start_game(t_cub3d *cub3d_data);
  * @param cub3d_data Pointer to a structure with the game information in it
  * @return Nothing
  */
-void	render_frame(SDL_Renderer *render, t_cub3d *cub3d_data);
+void		render_frame(SDL_Renderer *render, t_cub3d *cub3d_data);
 
 /**
  * @brief 
  * @param cub3d_data Pointer to a structure with the game information in it
  * @return Nothing
  */
-void	update(t_cub3d *cub3d_data);
+void		update(t_cub3d *cub3d_data);
+
+/**
+ * @brief Checks whether a x and y position contains a wall or not.
+ * @param x The x coordinate to check
+ * @param y The y coordinate to check
+ * @param cub3d_data Pointer to a structure with the game information in it
+ * @return True if coordinate contains a wall or empty space. 
+ * False if this is not the case.
+ */
+bool		check_wall_at(float x, float y, t_cub3d *cub3d);
 
 /**
 #=====================================#
@@ -62,7 +72,7 @@ void	update(t_cub3d *cub3d_data);
  * @param game 
  * @return Nothing
  */
-void	get_input(t_cub3d *cub3d);
+void		get_input(t_cub3d *cub3d);
 
 /**
 #=====================================#
@@ -79,7 +89,7 @@ void	get_input(t_cub3d *cub3d);
  * @param render Pointer to a structure representing rendering state
  * @return Nothing
  */
-void	draw_background(SDL_Renderer *render, t_cub3d *cub3d_data);
+void		draw_background(SDL_Renderer *render, t_cub3d *cub3d_data);
 
 /**
  * @brief Starts a while loop that loops over the entire map provided in
@@ -89,7 +99,7 @@ void	draw_background(SDL_Renderer *render, t_cub3d *cub3d_data);
  * @param cub3d_data Pointer to a structure with the game information in it
  * @return Nothing
  */
-void	draw_minimap(SDL_Renderer *render, t_cub3d *cub3d_data);
+void		draw_minimap(SDL_Renderer *render, t_cub3d *cub3d_data);
 
 /**
  * @brief Function that draws each seperate tile of the minimap. The maximum
@@ -104,7 +114,7 @@ void	draw_minimap(SDL_Renderer *render, t_cub3d *cub3d_data);
  * @param y The y coordinate of the tile that has to be printed on the map
  * @return Nothing
  */
-void	draw_tile(SDL_Renderer *render, t_cub3d *cub3d_data, int x, int y);
+void		draw_tile(SDL_Renderer *render, t_cub3d *cub3d_data, int x, int y);
 
 /**
  * @brief Draws a circle on the minimap where on the position where the player
@@ -113,6 +123,78 @@ void	draw_tile(SDL_Renderer *render, t_cub3d *cub3d_data, int x, int y);
  * @param cub3d_data Pointer to a structure with the game information in it
  * @return Nothing
  */
-void	draw_player(SDL_Renderer *render, t_cub3d *cub3d_data);
+void		draw_player(SDL_Renderer *render, t_cub3d *cub3d_data);
+
+/**
+#=====================================#
+#=========== horizontal.c ============#
+#=====================================#
+*/
+
+/**
+ * @brief Determines the x_step and y_step that are needed to look for
+ * the horizontal wallhits of a ray.
+ * @param horz Pointer to structure with information about a specific ray
+ * @param cub3d_data Pointer to a structure with the game information in it
+ * @param strip_id The id of the ray to check
+ * @param ray_angle The angle of the ray to check
+ * @return A structure with information about a specific ray
+ */
+void		get_horizontal_increment(t_raycheck *horz,
+				t_cub3d *cub3d_data, int strip_id, float ray_angle);
+
+/**
+ * @brief Determines if and where a ray intercepts with a wall on the
+ * horizontal axis
+ * @param horz Pointer to structure with information about a specific ray
+ * @param cub3d_data Pointer to a structure with the game information in it
+ * @param strip_id The id of the ray to check
+ * @return Nothing
+ */
+void		get_horz_intercept(t_raycheck *horz, t_cub3d *cub3d,
+				int strip_id);
+
+/**
+#=====================================#
+#============ vertical.c =============#
+#=====================================#
+*/
+
+/**
+ * @brief Determines the x_step and y_step that are needed to look for
+ * the vertical wallhits of a ray.
+ * @param vert Pointer to structure with information about a specific ray
+ * @param cub3d_data Pointer to a structure with the game information in it
+ * @param strip_id The id of the ray to check
+ * @param ray_angle The angle of the ray to check
+ * @return A structure with information about a specific ray
+ */
+void		get_vertical_increment(t_raycheck *vert,
+				t_cub3d *cub3d_data, int strip_id, float ray_angle);
+
+/**
+ * @brief Determines if and where a ray intercepts with a wall on the
+ * vertical axis
+ * @param vert Pointer to structure with information about a specific ray
+ * @param cub3d_data Pointer to a structure with the game information in it
+ * @param strip_id The id of the ray to check
+ * @return Nothing
+ */
+void		get_vert_intercept(t_raycheck *vert, t_cub3d *cub3d,
+				int strip_id);
+
+/**
+#=====================================#
+#============ raycast.c =============#
+#=====================================#
+*/
+
+/**
+ * @brief
+ * @param
+ * @return
+ */
+void		cast_ray(t_cub3d *cub3d_data, float ray_angle,
+				int strip_id);
 
 #endif

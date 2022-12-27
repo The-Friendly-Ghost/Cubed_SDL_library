@@ -6,7 +6,7 @@
 /*   By: cpost <cpost@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/12/05 08:48:32 by cpost         #+#    #+#                 */
-/*   Updated: 2022/12/21 16:12:26 by cpost         ########   odam.nl         */
+/*   Updated: 2022/12/27 14:39:24 by cpost         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,10 @@ typedef struct s_raycheck {
 	float	y_step;
 	float	x_intercept;
 	float	y_intercept;
+	float	next_touch_x;
+	float	next_touch_y;
+	float	x_check;
+	float	y_check;
 }	t_raycheck;
 
 typedef struct s_cub3d {
