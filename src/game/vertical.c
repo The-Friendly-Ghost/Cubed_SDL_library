@@ -6,7 +6,7 @@
 /*   By: cpost <cpost@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/12/27 14:13:49 by cpost         #+#    #+#                 */
-/*   Updated: 2022/12/27 15:59:43 by cpost         ########   odam.nl         */
+/*   Updated: 2023/01/01 18:04:54 by cpost         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@
 void	get_vert_intercept(t_raycheck *vert, t_cub3d *cub3d,
 			int strip_id)
 {
-	vert->next_touch_x = vert->x_intercept;
-	vert->next_touch_y = vert->y_step;
+	vert->next_touch_x = vert->x_step;
+	vert->next_touch_y = vert->y_intercept;
 	while (vert->next_touch_x >= 0
 		&& vert->next_touch_x <= WINDOW_WIDTH
 		&& vert->next_touch_y >= 0

@@ -6,7 +6,7 @@
 /*   By: cpost <cpost@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/12/05 08:58:25 by cpost         #+#    #+#                 */
-/*   Updated: 2022/12/27 16:13:24 by cpost         ########   odam.nl         */
+/*   Updated: 2023/01/01 18:13:32 by cpost         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	draw_player(SDL_Renderer *render, t_cub3d *cub3d_data)
 	i = 0;
 	SDL_SetRenderDrawColor(render, 255, 0, 0, 255);
 	(void)cub3d_data;
-	while (i < 10)
+	while (i < 1)
 	{
 		SDL_RenderDrawLine(render,
 			cub3d_data->player.x,

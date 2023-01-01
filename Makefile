@@ -6,26 +6,23 @@
 #    By: cpost <cpost@student.codam.nl>               +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/12/05 09:38:13 by cpost         #+#    #+#                  #
-#    Updated: 2022/12/20 12:13:19 by cpost         ########   odam.nl          #
+#    Updated: 2022/12/20 09:36:35 by cpost         ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
-
-# /Users/cpost/.brew/opt/**
 
 #=====================================#
 #========= General variables =========#
 #=====================================#
 
-BREW_DIR = $(shell brew --prefix)
-LIBSDL = $(BREW_DIR)/opt/sdl2/lib
+LIBSDL = /usr/lib/x86_64-linux-gnu/libSDL2.a
 
 
 SRC_PATH = src
 OBJ_PATH = obj
-INC_PATH = include lib/Libft/include lib/get_next_line/include /usr/include/SDL2 $(BREW_DIR)/opt/sdl2/include
+INC_PATH = include lib/Libft/include lib/get_next_line/include
 
-LIBFT_PATH = lib/Libft/
-GNL_PATH = lib/get_next_line/
+LIBFT_PATH = /home/casper/Desktop/Raycast_JS_prototype/lib/Libft/
+GNL_PATH = /home/casper/Desktop/Raycast_JS_prototype/lib/get_next_line/
 
 NAME = cub3D
 
@@ -40,7 +37,7 @@ RESET = \033[0m
 #=====================================#
 
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror #-g -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror #-g -fsanitize="address"
 
 #=====================================#
 #============ Input files ============#
@@ -51,8 +48,7 @@ SRC = $(shell find $(SRC_PATH) -type f -name '*.c')
 OBJ = $(addprefix $(OBJ_PATH)/,$(SRC:.c=.o))
 
 INC = $(addprefix -I,$(INC_PATH))
-LIB = $(LIBFT_PATH)libft.a $(GNL_PATH)getnextline.a
-LIB += -lsdl2 -L$(LIBSDL)
+LIB = $(LIBFT_PATH)libft.a $(GNL_PATH)getnextline.a -lSDL2 $(LIBSDL)
 
 
 #=====================================#
@@ -64,7 +60,7 @@ all: $(NAME)
 $(NAME): $(OBJ)
 	@make -C $(LIBFT_PATH)
 	@make -C $(GNL_PATH)
-	@$(CC) $(CFLAGS) $(LIB) -lm $(OBJ) $(INC) -o $(NAME) && printf "$(YELLOW)$(BOLD)\rBuild $(NAME)\r\e[35C[OK]\n$(RESET)"
+	@$(CC) $(CFLAGS) $(OBJ) $(LIB) -lm $(INC) -o $(NAME) && printf "$(YELLOW)$(BOLD)\rBuild $(NAME)\r\e[35C[OK]\n$(RESET)"
 
 
 $(OBJ_PATH)/%.o: %.c include/cub3d*
