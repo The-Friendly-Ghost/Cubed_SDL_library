@@ -6,15 +6,17 @@
 /*   By: cpost <cpost@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/12/05 08:58:25 by cpost         #+#    #+#                 */
-/*   Updated: 2023/01/01 18:24:52 by cpost         ########   odam.nl         */
+/*   Updated: 2023/01/04 11:53:41 by cpost         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d_structs.h"
+#include "libft.h"
 #include "cub3d_constants.h"
 #include "cub3d_game.h"
 #include <SDL2/SDL.h>
 #include <stdint.h>
+#include <stdio.h>
 
 bool	check_wall_at(float x, float y, t_cub3d *cub3d)
 {
@@ -23,8 +25,9 @@ bool	check_wall_at(float x, float y, t_cub3d *cub3d)
 
 	if (x < 0 || x > WINDOW_WIDTH || y < 0 || y > WINDOW_HEIGTH)
 		return (true);
-	grid_index_x = floor(x / cub3d->map_data.minimap_tile_size);
-	grid_index_y = floor(y / cub3d->map_data.minimap_tile_size);
+	grid_index_x = ft_floor(x / cub3d->map_data.minimap_tile_size);
+	grid_index_y = ft_floor(y / cub3d->map_data.minimap_tile_size);
+printf("x %d . y %d \n", grid_index_x, grid_index_x);
 	if (cub3d->map_data.map[grid_index_y][grid_index_x] == '1'
 		|| cub3d->map_data.map[grid_index_y][grid_index_x] == ' ')
 		return (true);
@@ -90,7 +93,7 @@ void	render_frame(SDL_Renderer *render, t_cub3d *cub3d_data)
 	SDL_RenderClear(render);
 	draw_background(render, cub3d_data);
 	draw_minimap(render, cub3d_data);
-	draw_player(render, cub3d_data);
+	// draw_player(render, cub3d_data);
 	// draw_rays(render, cub3d_data);
 	//TODO invoegen
 	SDL_RenderPresent(render);

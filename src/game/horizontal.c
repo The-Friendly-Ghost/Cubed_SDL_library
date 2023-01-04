@@ -6,7 +6,7 @@
 /*   By: cpost <cpost@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/12/27 14:13:49 by cpost         #+#    #+#                 */
-/*   Updated: 2022/12/27 15:18:33 by cpost         ########   odam.nl         */
+/*   Updated: 2023/01/04 11:19:23 by cpost         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,26 @@
 #include "cub3d_constants.h"
 #include "cub3d_game.h"
 
+static void	set_horz_to_zero(t_raycheck *horz)
+{
+	horz->found_wall_hit = false;
+	horz->wall_hit_x = 0;
+	horz->wall_hit_y = 0;
+	horz->wall_hit_content = 0;
+	horz->distance = 0;
+	horz->next_touch_x = 0;
+	horz->next_touch_x = 0;
+	horz->x_check = 0;
+	horz->y_check = 0;
+	horz->y_intercept = 0;
+	horz->y_step = 0;
+}
+
 void	get_horz_intercept(t_raycheck *horz, t_cub3d *cub3d,
 			int strip_id)
 {
 	horz->next_touch_x = horz->x_intercept;
-	horz->next_touch_y = horz->y_step;
+	horz->next_touch_y = horz->y_intercept;
 	while (horz->next_touch_x >= 0
 		&& horz->next_touch_x <= WINDOW_WIDTH
 		&& horz->next_touch_y >= 0
@@ -48,6 +63,7 @@ void	get_horz_intercept(t_raycheck *horz, t_cub3d *cub3d,
 void	get_horizontal_increment(t_raycheck *horz, t_cub3d *cub3d_data,
 			int strip_id, float ray_angle)
 {
+	set_horz_to_zero(horz);
 	// Find the y-coordinate of the closest horiontal grid intersection
 	horz->y_intercept = ft_floor(cub3d_data->player.y
 			/ cub3d_data->map_data.minimap_tile_size)

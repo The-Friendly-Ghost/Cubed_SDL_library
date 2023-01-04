@@ -6,7 +6,7 @@
 /*   By: cpost <cpost@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/12/27 14:13:49 by cpost         #+#    #+#                 */
-/*   Updated: 2023/01/01 18:04:54 by cpost         ########   odam.nl         */
+/*   Updated: 2023/01/04 11:43:25 by cpost         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,25 @@
 #include "cub3d_constants.h"
 #include "cub3d_game.h"
 
+static void	set_vert_to_zero(t_raycheck *vert)
+{
+	vert->found_wall_hit = false;
+	vert->wall_hit_x = 0;
+	vert->wall_hit_y = 0;
+	vert->wall_hit_content = 0;
+	vert->distance = 0;
+	vert->next_touch_x = 0;
+	vert->next_touch_x = 0;
+	vert->x_check = 0;
+	vert->y_check = 0;
+	vert->y_intercept = 0;
+	vert->y_step = 0;
+}
+
 void	get_vert_intercept(t_raycheck *vert, t_cub3d *cub3d,
 			int strip_id)
 {
-	vert->next_touch_x = vert->x_step;
+	vert->next_touch_x = vert->x_intercept;
 	vert->next_touch_y = vert->y_intercept;
 	while (vert->next_touch_x >= 0
 		&& vert->next_touch_x <= WINDOW_WIDTH
@@ -48,6 +63,7 @@ void	get_vert_intercept(t_raycheck *vert, t_cub3d *cub3d,
 void	get_vertical_increment(t_raycheck *vert, t_cub3d *cub3d_data,
 			int strip_id, float ray_angle)
 {
+	set_vert_to_zero(vert);
 	// Find the x-coordinate of the closest horiontal grid intersection
 	vert->x_intercept = ft_floor(cub3d_data->player.x
 			/ cub3d_data->map_data.minimap_tile_size)
