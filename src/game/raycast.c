@@ -6,7 +6,7 @@
 /*   By: cpost <cpost@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/12/05 08:58:25 by cpost         #+#    #+#                 */
-/*   Updated: 2023/01/04 11:43:08 by cpost         ########   odam.nl         */
+/*   Updated: 2023/01/09 17:24:15 by cpost         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,19 +43,12 @@ void	check_where_ray_is_facing(t_cub3d *cub3d_data, float ray_angle,
 	}
 }
 
-float	normalize_angle(float ray_angle)
-{
-	ray_angle = ft_fmod(ray_angle, TWO_PI);
-	if (ray_angle < 0)
-		ray_angle = TWO_PI + ray_angle;
-	return (ray_angle);
-}
-
 float	calc_distance_between_points(float x1, float y1, float x2, float y2)
 {
-	return (ft_sqrtf((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1)));
+	return (sqrtf((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1)));
 }
 
+#include <stdio.h>
 void	set_ray_distance(t_raycheck *vert, t_raycheck *horz,
 		t_cub3d *cub3d_data, int strip_id)
 {
@@ -71,6 +64,8 @@ void	set_ray_distance(t_raycheck *vert, t_raycheck *horz,
 		vert->distance = INT_MAX;
 	if (vert->distance < horz->distance)
 	{
+if (strip_id == 1)
+printf("vert: %f - horz: %f -- vert hit! \n", vert->distance, horz->distance);
 		cub3d_data->rays[strip_id].distance = vert->distance;
 		cub3d_data->rays[strip_id].wall_hit_x = vert->wall_hit_x;
 		cub3d_data->rays[strip_id].wall_hit_y = vert->wall_hit_y;
@@ -79,6 +74,8 @@ void	set_ray_distance(t_raycheck *vert, t_raycheck *horz,
 	}
 	else
 	{
+if (strip_id == 1)
+printf("vert: %f - horz: %f -- horz hit! \n", vert->distance, horz->distance);
 		cub3d_data->rays[strip_id].distance = horz->distance;
 		cub3d_data->rays[strip_id].wall_hit_x = horz->wall_hit_x;
 		cub3d_data->rays[strip_id].wall_hit_y = horz->wall_hit_y;
@@ -97,6 +94,6 @@ void	cast_ray(t_cub3d *cub3d_data, float ray_angle,
 	check_where_ray_is_facing(cub3d_data, ray_angle, strip_id);
 	get_horizontal_increment(&horz, cub3d_data, strip_id, ray_angle);
 	get_vertical_increment(&vert, cub3d_data, strip_id, ray_angle);
-	// set_ray_distance(&vert, &horz, cub3d_data, strip_id);
+	set_ray_distance(&vert, &horz, cub3d_data, strip_id);
 	cub3d_data->rays[strip_id].ray_angle = ray_angle;
 }

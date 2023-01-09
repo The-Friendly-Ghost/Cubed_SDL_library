@@ -6,7 +6,7 @@
 /*   By: cpost <cpost@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/12/16 14:15:39 by cpost         #+#    #+#                 */
-/*   Updated: 2022/12/20 15:14:04 by cpost         ########   odam.nl         */
+/*   Updated: 2023/01/09 17:15:13 by cpost         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 # define WINDOW_WIDTH 1280
 # define WINDOW_HEIGTH 960
-# define MINIMAP_SIZE 420.0
+# define MINIMAP_SIZE 520.0
 
 # define PI M_PI
 # define TWO_PI (2 * M_PI)
@@ -24,7 +24,7 @@
 # define FOV_ANGLE (60 * (TWO_PI / 360))
 # define NUM_RAYS WINDOW_WIDTH
 
-# define FPS 60
+# define FPS 30
 # define FRAME_TIME_LENGTH (1000 / FPS)
 
 #endif

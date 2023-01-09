@@ -6,7 +6,7 @@
 /*   By: cpost <cpost@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/12/05 08:58:25 by cpost         #+#    #+#                 */
-/*   Updated: 2023/01/04 11:40:15 by cpost         ########   odam.nl         */
+/*   Updated: 2023/01/09 12:25:21 by cpost         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ void	draw_player(SDL_Renderer *render, t_cub3d *cub3d_data)
 			cub3d_data->player.y,
 			cub3d_data->rays[i].wall_hit_x,
 			cub3d_data->rays[i].wall_hit_y);
-// printf("i = %d X = %f, Y = %f\n", i, cub3d_data->rays[i].wall_hit_x, cub3d_data->rays[i].wall_hit_y);
 		i++;
 	}
 }

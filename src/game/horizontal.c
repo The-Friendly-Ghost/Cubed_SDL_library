@@ -6,7 +6,7 @@
 /*   By: cpost <cpost@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/12/27 14:13:49 by cpost         #+#    #+#                 */
-/*   Updated: 2023/01/04 11:19:23 by cpost         ########   odam.nl         */
+/*   Updated: 2023/01/09 16:06:22 by cpost         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "cub3d_structs.h"
 #include "cub3d_constants.h"
 #include "cub3d_game.h"
+#include <math.h>
 
 static void	set_horz_to_zero(t_raycheck *horz)
 {
@@ -35,10 +36,7 @@ void	get_horz_intercept(t_raycheck *horz, t_cub3d *cub3d,
 {
 	horz->next_touch_x = horz->x_intercept;
 	horz->next_touch_y = horz->y_intercept;
-	while (horz->next_touch_x >= 0
-		&& horz->next_touch_x <= WINDOW_WIDTH
-		&& horz->next_touch_y >= 0
-		&& horz->next_touch_y <= WINDOW_HEIGTH)
+	while (check_within_bounds(horz, cub3d))
 	{
 		horz->x_check = horz->next_touch_x;
 		if (cub3d->rays[strip_id].is_ray_facing_up)
@@ -51,8 +49,8 @@ void	get_horz_intercept(t_raycheck *horz, t_cub3d *cub3d,
 			horz->wall_hit_y = horz->next_touch_y;
 			horz->found_wall_hit = true;
 			horz->wall_hit_content = cub3d->map_data.map
-			[(int)ft_floor(horz->y_check / cub3d->map_data.minimap_tile_size)]
-			[(int)ft_floor(horz->x_check / cub3d->map_data.minimap_tile_size)];
+			[(int)floor(horz->y_check / cub3d->map_data.minimap_tile_size)]
+			[(int)floor(horz->x_check / cub3d->map_data.minimap_tile_size)];
 			break ;
 		}
 		horz->next_touch_x += horz->x_step;
@@ -65,7 +63,7 @@ void	get_horizontal_increment(t_raycheck *horz, t_cub3d *cub3d_data,
 {
 	set_horz_to_zero(horz);
 	// Find the y-coordinate of the closest horiontal grid intersection
-	horz->y_intercept = ft_floor(cub3d_data->player.y
+	horz->y_intercept = floor(cub3d_data->player.y
 			/ cub3d_data->map_data.minimap_tile_size)
 		* cub3d_data->map_data.minimap_tile_size;
 	if (cub3d_data->rays[strip_id].is_ray_facing_down)
@@ -83,6 +81,5 @@ void	get_horizontal_increment(t_raycheck *horz, t_cub3d *cub3d_data,
 		horz->x_step *= -1;
 	if (cub3d_data->rays[strip_id].is_ray_facing_right && horz->x_step < 0)
 		horz->x_step *= -1;
-	// PIKUMA 10 MIN
 	get_horz_intercept(horz, cub3d_data, strip_id);
 }

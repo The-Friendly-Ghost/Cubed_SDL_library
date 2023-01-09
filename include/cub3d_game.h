@@ -6,7 +6,7 @@
 /*   By: cpost <cpost@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/12/05 11:13:37 by cpost         #+#    #+#                 */
-/*   Updated: 2022/12/27 16:12:12 by cpost         ########   odam.nl         */
+/*   Updated: 2023/01/09 15:16:32 by cpost         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -196,5 +196,27 @@ void		get_vert_intercept(t_raycheck *vert, t_cub3d *cub3d,
  */
 void		cast_ray(t_cub3d *cub3d_data, float ray_angle,
 				int strip_id);
+
+/**
+#=====================================#
+#============== utils.c ==============#
+#=====================================#
+*/
+
+/**
+ * @brief Normalizes an angle so that it is always between 0 and 360 degrees.
+ * If an angle is 361 for example, this function normalizes it to 1 degree.
+ * @param ray_angle The angle to check
+ * @return The normalized angle
+ */
+float		normalize_angle(float ray_angle);
+
+/**
+ * @brief Checks whether a raycheck is within bounds of the map.
+ * @param ray The ray to check
+ * @param cub3d Pointer to a structure with the game information in it
+ * @return 1 if true (within bounds), 0 if false (out of bounds)
+ */
+int			check_within_bounds(t_raycheck *ray, t_cub3d *cub3d);
 
 #endif
