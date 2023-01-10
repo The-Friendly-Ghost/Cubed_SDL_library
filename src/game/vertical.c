@@ -6,7 +6,7 @@
 /*   By: cpost <cpost@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/12/27 14:13:49 by cpost         #+#    #+#                 */
-/*   Updated: 2023/01/09 16:13:20 by cpost         ########   odam.nl         */
+/*   Updated: 2023/01/10 13:31:50 by cpost         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,8 @@ void	get_vert_intercept(t_raycheck *vert, t_cub3d *cub3d,
 			vert->wall_hit_y = vert->next_touch_y;
 			vert->found_wall_hit = true;
 			vert->wall_hit_content = cub3d->map_data.map
-			[(int)floor(vert->y_check / cub3d->map_data.minimap_tile_size)]
-			[(int)floor(vert->x_check / cub3d->map_data.minimap_tile_size)];
+			[(int)floor(vert->y_check / TILE_SIZE)]
+			[(int)floor(vert->x_check / TILE_SIZE)];
 			break ;
 		}
 		vert->next_touch_x += vert->x_step;
@@ -64,19 +64,18 @@ void	get_vertical_increment(t_raycheck *vert, t_cub3d *cub3d_data,
 	set_vert_to_zero(vert);
 	// Find the x-coordinate of the closest horiontal grid intersection
 	vert->x_intercept = floor(cub3d_data->player.x
-			/ cub3d_data->map_data.minimap_tile_size)
-		* cub3d_data->map_data.minimap_tile_size;
+			/ TILE_SIZE) * TILE_SIZE;
 	if (cub3d_data->rays[strip_id].is_ray_facing_right)
-		vert->x_intercept += cub3d_data->map_data.minimap_tile_size;
+		vert->x_intercept += TILE_SIZE;
 	// Find the y-coordinate of the closest horiontal grid intersection
 	vert->y_intercept = cub3d_data->player.y + (vert->x_intercept
 			- cub3d_data->player.x) * tan(ray_angle);
 	// Calculate the increment xstep
-	vert->x_step = cub3d_data->map_data.minimap_tile_size;
+	vert->x_step = TILE_SIZE;
 	if (cub3d_data->rays[strip_id].is_ray_facing_left)
 		vert->x_step *= -1;
 	// Calculate the increment ystep
-	vert->y_step = cub3d_data->map_data.minimap_tile_size * tan(ray_angle);
+	vert->y_step = TILE_SIZE * tan(ray_angle);
 	if (cub3d_data->rays[strip_id].is_ray_facing_up && vert->y_step > 0)
 		vert->y_step *= -1;
 	if (cub3d_data->rays[strip_id].is_ray_facing_down && vert->y_step < 0)

@@ -6,7 +6,7 @@
 /*   By: cpost <cpost@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/12/05 08:58:25 by cpost         #+#    #+#                 */
-/*   Updated: 2023/01/09 17:14:59 by cpost         ########   odam.nl         */
+/*   Updated: 2023/01/10 15:01:10 by cpost         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,9 @@ SDL_Window	*initialize_window(void)
 
 void	set_player_starting_position(t_cub3d *cub3d)
 {
-	cub3d->player.y = cub3d->map_data.minimap_tile_size
+	cub3d->player.y = TILE_SIZE
 		* cub3d->map_data.start_pos_y;
-	cub3d->player.x = cub3d->map_data.minimap_tile_size
+	cub3d->player.x = TILE_SIZE
 		* cub3d->map_data.start_pos_x;
 	if (cub3d->map_data.n_column > cub3d->map_data.n_row)
 	{
@@ -65,13 +65,7 @@ void	init_structures(t_cub3d *cub3d)
 		cub3d->player.rotation_angle = TWO_PI * 0.5;
 	else
 		cub3d->player.rotation_angle = TWO_PI * 0.75;
-	if (cub3d->map_data.n_column > cub3d->map_data.n_row)
-		cub3d->map_data.minimap_tile_size = (MINIMAP_SIZE
-				/ cub3d->map_data.n_column);
-	else
-		cub3d->map_data.minimap_tile_size = (MINIMAP_SIZE
-				/ cub3d->map_data.n_row);
-	cub3d->player.walk_speed = 3 * cub3d->map_data.minimap_tile_size;
+	cub3d->player.walk_speed = 3 * TILE_SIZE ;
 	set_player_starting_position(cub3d);
 }
 

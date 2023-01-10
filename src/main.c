@@ -6,7 +6,7 @@
 /*   By: cpost <cpost@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/12/05 08:58:25 by cpost         #+#    #+#                 */
-/*   Updated: 2022/12/27 15:21:13 by cpost         ########   odam.nl         */
+/*   Updated: 2023/01/10 15:16:49 by cpost         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,6 @@ void	validate_constants(void)
 		exit_error("Window be at least 800 [width] x 600 [height]", 1);
 	if (WINDOW_WIDTH > 1440 || WINDOW_HEIGTH > 1080)
 		exit_error("Window can be at most 1440 [width] x 1080 [height]", 1);
-	if (WINDOW_WIDTH / 4 > (WINDOW_HEIGTH / 3) + 0.1
-		|| WINDOW_WIDTH / 4 < (WINDOW_HEIGTH / 3) - 0.1)
-		exit_error("Window aspect ratio must be 4:3", 1);
 	if (FOV_ANGLE != (60 * (TWO_PI / 360)))
 		exit_error("FOV must be 60 degrees (in radials)", 1);
 	if (PI != M_PI || TWO_PI != 2 * M_PI)

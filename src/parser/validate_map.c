@@ -6,7 +6,7 @@
 /*   By: cpost <cpost@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/12/07 12:33:22 by cpost         #+#    #+#                 */
-/*   Updated: 2022/12/19 15:15:09 by cpost         ########   odam.nl         */
+/*   Updated: 2023/01/10 15:13:15 by cpost         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,4 +141,7 @@ void	validate_map(t_map *map)
 	equalize_row_length(map);
 	check_forbidden_characters_in_map(map);
 	check_if_map_is_closed(map);
+	if (map->n_column * TILE_SIZE * SCALE > WINDOW_WIDTH
+		|| map->n_row * TILE_SIZE * SCALE > WINDOW_HEIGTH)
+		exit_error("Minimap is larger than window", 1);
 }

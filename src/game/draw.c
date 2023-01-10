@@ -6,7 +6,7 @@
 /*   By: cpost <cpost@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/12/05 08:58:25 by cpost         #+#    #+#                 */
-/*   Updated: 2023/01/09 12:25:21 by cpost         ########   odam.nl         */
+/*   Updated: 2023/01/10 16:55:24 by cpost         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include <SDL2/SDL.h>
 #include <math.h>
 
-void	draw_player(SDL_Renderer *render, t_cub3d *cub3d_data)
+void	draw_rays(SDL_Renderer *render, t_cub3d *cub3d_data)
 {
 	int	i;
 
@@ -26,10 +26,10 @@ void	draw_player(SDL_Renderer *render, t_cub3d *cub3d_data)
 	while (i < NUM_RAYS)
 	{
 		SDL_RenderDrawLine(render,
-			cub3d_data->player.x,
-			cub3d_data->player.y,
-			cub3d_data->rays[i].wall_hit_x,
-			cub3d_data->rays[i].wall_hit_y);
+			cub3d_data->player.x * SCALE,
+			cub3d_data->player.y * SCALE,
+			cub3d_data->rays[i].wall_hit_x * SCALE,
+			cub3d_data->rays[i].wall_hit_y * SCALE);
 		i++;
 	}
 }
@@ -40,8 +40,8 @@ void	draw_tile(SDL_Renderer *render, t_cub3d *cub3d_data, int x, int y)
 	float		pos_y;
 	SDL_Rect	tile;
 
-	pos_x = (float)x * cub3d_data->map_data.minimap_tile_size;
-	pos_y = (float)y * cub3d_data->map_data.minimap_tile_size;
+	pos_x = (float)x * TILE_SIZE * SCALE;
+	pos_y = (float)y * TILE_SIZE * SCALE;
 	if (cub3d_data->map_data.map[y][x] == '1')
 		SDL_SetRenderDrawColor(render, 255, 255, 255, 255);
 	else if (cub3d_data->map_data.map[y][x] == ' ')
@@ -50,8 +50,8 @@ void	draw_tile(SDL_Renderer *render, t_cub3d *cub3d_data, int x, int y)
 		SDL_SetRenderDrawColor(render, 0, 0, 0, 255);
 	tile.x = pos_x;
 	tile.y = pos_y;
-	tile.h = cub3d_data->map_data.minimap_tile_size + 1;
-	tile.w = cub3d_data->map_data.minimap_tile_size + 1;
+	tile.h = TILE_SIZE * SCALE;
+	tile.w = TILE_SIZE * SCALE;
 	SDL_RenderFillRect(render, &tile);
 }
 

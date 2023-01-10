@@ -6,7 +6,7 @@
 /*   By: cpost <cpost@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/12/05 08:58:25 by cpost         #+#    #+#                 */
-/*   Updated: 2023/01/09 17:24:15 by cpost         ########   odam.nl         */
+/*   Updated: 2023/01/10 13:37:46 by cpost         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ float	calc_distance_between_points(float x1, float y1, float x2, float y2)
 	return (sqrtf((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1)));
 }
 
-#include <stdio.h>
 void	set_ray_distance(t_raycheck *vert, t_raycheck *horz,
 		t_cub3d *cub3d_data, int strip_id)
 {
@@ -65,7 +64,6 @@ void	set_ray_distance(t_raycheck *vert, t_raycheck *horz,
 	if (vert->distance < horz->distance)
 	{
 if (strip_id == 1)
-printf("vert: %f - horz: %f -- vert hit! \n", vert->distance, horz->distance);
 		cub3d_data->rays[strip_id].distance = vert->distance;
 		cub3d_data->rays[strip_id].wall_hit_x = vert->wall_hit_x;
 		cub3d_data->rays[strip_id].wall_hit_y = vert->wall_hit_y;
@@ -75,7 +73,6 @@ printf("vert: %f - horz: %f -- vert hit! \n", vert->distance, horz->distance);
 	else
 	{
 if (strip_id == 1)
-printf("vert: %f - horz: %f -- horz hit! \n", vert->distance, horz->distance);
 		cub3d_data->rays[strip_id].distance = horz->distance;
 		cub3d_data->rays[strip_id].wall_hit_x = horz->wall_hit_x;
 		cub3d_data->rays[strip_id].wall_hit_y = horz->wall_hit_y;

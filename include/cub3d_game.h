@@ -6,7 +6,7 @@
 /*   By: cpost <cpost@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/12/05 11:13:37 by cpost         #+#    #+#                 */
-/*   Updated: 2023/01/09 15:16:32 by cpost         ########   odam.nl         */
+/*   Updated: 2023/01/10 16:55:50 by cpost         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,7 +123,7 @@ void		draw_tile(SDL_Renderer *render, t_cub3d *cub3d_data, int x, int y);
  * @param cub3d_data Pointer to a structure with the game information in it
  * @return Nothing
  */
-void		draw_player(SDL_Renderer *render, t_cub3d *cub3d_data);
+void		draw_rays(SDL_Renderer *render, t_cub3d *cub3d_data);
 
 /**
 #=====================================#

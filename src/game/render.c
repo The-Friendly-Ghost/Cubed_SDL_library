@@ -6,7 +6,7 @@
 /*   By: cpost <cpost@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/12/05 08:58:25 by cpost         #+#    #+#                 */
-/*   Updated: 2023/01/09 17:42:54 by cpost         ########   odam.nl         */
+/*   Updated: 2023/01/10 16:56:06 by cpost         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,13 @@ bool	check_wall_at(float x, float y, t_cub3d *cub3d)
 	int	grid_index_x;
 	int	grid_index_y;
 
-	if (x < 0
-		|| x > cub3d->map_data.minimap_tile_size * cub3d->map_data.n_column
-		|| y < 0
-		|| y > cub3d->map_data.minimap_tile_size * cub3d->map_data.n_row)
+	if (x <= 0
+		|| x >= TILE_SIZE * cub3d->map_data.n_column
+		|| y <= 0
+		|| y >= TILE_SIZE * cub3d->map_data.n_row)
 		return (true);
-	grid_index_x = floor(x / cub3d->map_data.minimap_tile_size);
-	grid_index_y = floor(y / cub3d->map_data.minimap_tile_size);
+	grid_index_x = (int)floor(x / TILE_SIZE);
+	grid_index_y = (int)floor(y / TILE_SIZE);
 	if (cub3d->map_data.map[grid_index_y][grid_index_x] == '1'
 		|| cub3d->map_data.map[grid_index_y][grid_index_x] == ' ')
 		return (true);
@@ -96,8 +96,6 @@ void	render_frame(SDL_Renderer *render, t_cub3d *cub3d_data)
 	SDL_RenderClear(render);
 	draw_background(render, cub3d_data);
 	draw_minimap(render, cub3d_data);
-	draw_player(render, cub3d_data);
-	// draw_rays(render, cub3d_data);
-	//TODO invoegen
+	draw_rays(render, cub3d_data);
 	SDL_RenderPresent(render);
 }
